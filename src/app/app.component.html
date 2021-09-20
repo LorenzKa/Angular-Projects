@@ -1,21 +1,11 @@
 <h3>{{title}}</h3>
-<input type="text" [(ngModel)]="userInput"/>
-<p>Your input was: {{userInput}}</p>
-<hr>
-Error Message: <input #text type="text"/>
-<button (click)="setErrorMsg(text.value)" class="btn btn-primary">Click me!</button>
-<div [hidden]="showErrors">{{errorMessage}}</div>
-
-<hr>
-Bitte Auswählen:
-<select [(ngModel)]="userSelection">
-   <option *ngFor="let option of options; let idx = index" value="{{option}}">{{idx + 1}} - {{option}}</option>
-</select>
-You have selected: {{userSelection}}
-<hr>
-Please select an animal:
-<select [(ngModel)]="selectedAnimal">
-    <option *ngFor="let animal of animals" [ngValue]="animal">{{animal.name}}</option>
-</select>
-
-You have selected: {{selectedAnimal.name}} {{selectedAnimal.legs}} {{selectedAnimal | json}}
+Start Value: <input type="number"  [(ngModel)]="selectedNumber"/>
+<br>
+Height:<input style="margin-left: 32px;"  type="number" [(ngModel)]="selectedHeight"/>
+<br>
+<button [disabled]="selectedHeight<2 && selectedNumber<1" (click)="calculate(selectedNumber,selectedHeight)" style="margin-left: 175px; margin-top: 5px;" class="btn btn-danger">Calculate</button>
+<br>
+<label style="color:red" *ngIf="selectedHeight<2">Choose a height thats larger than 2</label>
+<br>
+<label style="color: red;" *ngIf="selectedNumber<1">Choose a number bigger than 0</label>
+<h3 *ngFor="let calculation of stringCalculations">{{calculation}}</h3>

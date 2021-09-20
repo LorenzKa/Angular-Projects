@@ -10,30 +10,23 @@ interface Animal {
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'My Angular Demo';
-  showErrors = true;
-  errorMessage = 'Bitte Vorname eintragen';
-  userInput = '';
-  userSelection = 'A';
-  animals: Animal[] = [
-    {
-      name: 'Dog',
-      legs: 4,
-    },
-    {
-      name: 'Snake',
-      legs: 0,
-    },
-    {
-      name: 'Bird',
-      legs: 2,
-    },
-  ];
-  selectedAnimal: Animal = this.animals[0];
-  options = ['First Entry', 'Second Entry', 'Third Entry'];
-
-  setErrorMsg(msg: string): void {
-    this.showErrors = false;
-    this.errorMessage = msg;
+  title = 'Worlds Best Turmrechner';
+  selectedNumber = 0;
+  selectedHeight = 0;
+  isDisabled = true;
+  stringCalculations : string[] = []
+  calculate(number: any, height: any) : void {
+    this.stringCalculations = []
+    for(var i = 2; i <height+1; i++){
+      var newNumber = number * i;
+      this.stringCalculations.push(number+" "+"* "+i+" = "+newNumber)
+      number = newNumber
+    }
+    for(var x = 2; x < height+1; x++){
+      var newNumber = number / x;
+      this.stringCalculations.push(number+" "+"/ "+x+" = "+newNumber)
+      number = newNumber
+    }
   }
+  
 }
