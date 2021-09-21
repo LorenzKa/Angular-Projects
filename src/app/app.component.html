@@ -1,11 +1,12 @@
 <h3>{{title}}</h3>
+
 <body id="body">
-<h1> Budget in EUR</h1>
-<input type="number" class="form-control" style="width: 770px;"/>
-<div>
-<div class="float-child" style="height: 200px;">
-    <h3>Verfügbare Produkte</h3>
-    <table class="table">
+  <h1> Budget in EUR</h1>
+  <input type="number" class="form-control" style="width: 770px;" />
+  <div>
+    <div class="float-child" style="width: 350px;">
+      <h3>Verfügbare Produkte</h3>
+      <table class="table">
         <thead>
           <tr>
             <th scope="col">Name</th>
@@ -13,16 +14,35 @@
           </tr>
         </thead>
         <tbody>
+          <tr *ngFor="let product of availableProducts">
+            <td>{{product.name}}</td>
+            <td>{{product.price}}€</td>
+          </tr>
+          <tr *ngIf="addingProduct == true">
+            <td>
+              <input  class="form-control" type="text" />
+            </td>
+            <td>
+              <input  class="form-control" type="text" />
+            </td>
+          </tr>
           <tr>
-            <td scope="row">3</td>
-            <td>Larry</td>
+            <td>
+              <button *ngIf="addingProduct == false" (click)="addProduct()" class="btn btn-primary">Produkt
+                hinzufügen</button>
+              <button style="width: 200px;" *ngIf="addingProduct == true" (click)="addedProduct()" class="btn btn-success">Produkt
+                hinzufügen</button>
+              <button  style="width: 100px;" *ngIf="addingProduct == true" (click)="addedProduct()"
+                class="btn btn-danger">Abbrechen</button>
+            </td>
+            <td></td>
           </tr>
         </tbody>
       </table>
-</div>
-<div class="float-child" style="width: 500px;">
-    <h3>Einkaufsliste</h3>
-    <table class="table">
+    </div>
+    <div class="float-child" style="width: 500px;">
+      <h3>Einkaufsliste</h3>
+      <table class="table">
         <thead>
           <tr>
             <th scope="col">Name</th>
@@ -40,14 +60,14 @@
           </tr>
           <tr>
             <th><select class="form-select" style="height: 100%;">
-                <option selected>Test</option>
-            </select></th>
-            <th scope="row"><input class="form-control" type="number"/></th>
+                <option *ngFor="let product of availableProducts" [value]="product">{{product.name}}</option>
+              </select></th>
+            <th scope="row"><input class="form-control" type="number" /></th>
             <th><button class="btn btn-success">Hinzufügen</button></th>
-          <th></th>
+            <th></th>
           </tr>
         </tbody>
       </table>
-</div>
-</div>
+    </div>
+  </div>
 </body>
