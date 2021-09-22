@@ -1,8 +1,9 @@
 .float-child {
-    
-    float: left;
-    padding-right: 10px;
+  float: left;
+  padding-right: 10px;
 }
-#body {
-    padding: 5px;
+#content {
+  max-width: 1000px;
+  margin: auto;
+  padding: 5px;
 }

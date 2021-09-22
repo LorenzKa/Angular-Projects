@@ -1,73 +1,153 @@
-<h3>{{title}}</h3>
-
-<body id="body">
-  <h1> Budget in EUR</h1>
-  <input type="number" class="form-control" style="width: 770px;" />
-  <div>
-    <div class="float-child" style="width: 350px;">
+<div id="content">
+  <h1>Budget in EUR</h1>
+  <input
+    [(ngModel)]="budget"
+    type="number"
+    class="form-control"
+    style="width: 890px"
+  />
+  <div style="margin-top: 20px">
+    <div class="float-child" style="width: 400px">
       <h3>Verfügbare Produkte</h3>
       <table class="table">
         <thead>
           <tr>
             <th scope="col">Name</th>
-            <th scope="col">Preis</th>
+            <th style="width: 120px" scope="col">Preis</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let product of availableProducts">
-            <td>{{product.name}}</td>
-            <td>{{product.price}}€</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price.toFixed(2) }}€</td>
           </tr>
           <tr *ngIf="addingProduct == true">
             <td>
-              <input  class="form-control" type="text" />
+              <input
+                [(ngModel)]="newProductName"
+                placeholder="Zipfer Märzen"
+                class="form-control"
+                type="text"
+              />
             </td>
             <td>
-              <input  class="form-control" type="text" />
+              <input
+                [(ngModel)]="newProductPrice"
+                class="form-control"
+                type="number"
+              />
             </td>
           </tr>
           <tr>
             <td>
-              <button *ngIf="addingProduct == false" (click)="addProduct()" class="btn btn-primary">Produkt
-                hinzufügen</button>
-              <button style="width: 200px;" *ngIf="addingProduct == true" (click)="addedProduct()" class="btn btn-success">Produkt
-                hinzufügen</button>
-              <button  style="width: 100px;" *ngIf="addingProduct == true" (click)="addedProduct()"
-                class="btn btn-danger">Abbrechen</button>
+              <button
+                *ngIf="addingProduct == false"
+                (click)="addProduct()"
+                class="btn btn-primary"
+              >
+                Produkt hinzufügen
+              </button>
+              <button
+                style="float: left"
+                [disabled]="newProductPrice < 1 || newProductName == ''"
+                style="width: 200px"
+                *ngIf="addingProduct == true"
+                (click)="addProductToAvailableProducts()"
+                class="btn btn-success"
+              >
+                Produkt hinzufügen
+              </button>
             </td>
-            <td></td>
+            <td>
+              <button
+                style="float: left"
+                style="width: 100px"
+                *ngIf="addingProduct == true"
+                (click)="closeProductAdding()"
+                class="btn btn-danger"
+              >
+                Abbrechen
+              </button>
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <div class="float-child" style="width: 500px;">
+    <div class="float-child" style="width: 500px">
       <h3>Einkaufsliste</h3>
       <table class="table">
         <thead>
           <tr>
             <th scope="col">Name</th>
-            <th style="width: 100px;" scope="col">Menge</th>
+            <th style="width: 100px" scope="col">Menge</th>
             <th scope="col">Gesamtpreis</th>
             <th scope="col">Aktion</th>
           </tr>
         </thead>
         <tbody>
+          <tr *ngFor="let cartProduct of shoppingList">
+            <td>{{ cartProduct.name }}</td>
+            <td>{{ cartProduct.amount }}</td>
+            <td>{{ cartProduct.price.toFixed(2) }}€</td>
+            <td>
+              <svg
+                (click)="deleteItem(cartProduct.id)"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+              >
+                <path fill="none" d="M0 0h24v24H0z" />
+                <path
+                  d="M17 6h5v2h-2v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8H2V6h5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3zm1 2H6v12h12V8zM9 4v2h6V4H9z"
+                  fill="rgba(0,152,255,1)"
+                />
+              </svg>
+            </td>
+          </tr>
           <tr>
             <th></th>
-            <th scope="row">Gesamtpreis</th>
-            <th>5,00€</th>
+            <th>Gesamtpreis</th>
+            <th [style.color]="budget >= totalCost ? 'green' : 'red'">
+              {{ totalCost.toFixed(2) }}€
+            </th>
             <th></th>
           </tr>
           <tr>
-            <th><select class="form-select" style="height: 100%;">
-                <option *ngFor="let product of availableProducts" [value]="product">{{product.name}}</option>
-              </select></th>
-            <th scope="row"><input class="form-control" type="number" /></th>
-            <th><button class="btn btn-success">Hinzufügen</button></th>
+            <th>
+              <select
+                [(ngModel)]="productIdAddToCart"
+                class="form-select"
+                style="height: 100%"
+              >
+                <option
+                  *ngFor="let product of availableProducts"
+                  [value]="product.id"
+                >
+                  {{ product.name }}
+                </option>
+              </select>
+            </th>
+            <th scope="row">
+              <input
+                [(ngModel)]="amountAddToCart"
+                class="form-control"
+                type="number"
+              />
+            </th>
+            <th>
+              <button
+                [disabled]="amountAddToCart < 1"
+                (click)="addProductToCart()"
+                class="btn btn-success"
+              >
+                Hinzufügen
+              </button>
+            </th>
             <th></th>
           </tr>
         </tbody>
       </table>
     </div>
   </div>
-</body>
+</div>
