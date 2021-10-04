@@ -1,0 +1,35 @@
+<h3>Express Demo Frontend</h3>
+<hr />
+<input type="number" *[(ngModel)]="customerId" class="form-control"/>
+<button class="btn btn-primary" (click)="getAllCustomers()">
+  Get all customers
+</button>
+<button class="btn btn-primary" (click)="getCustomer(
+)">
+  Get Customer
+</button>
+<form id="createCustomerForm">
+  <div class="form-group">
+    <label for="exampleFormControlInput1">Id</label>
+    <input type="number" class="form-control" *[(ngModel)]="formCustomerId" placeholder="6">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Firstname</label>
+    <input type="text" class="form-control" *[(ngModel)]="formFirstname" placeholder="Max">
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Lastname</label>
+    <input type="text" class="form-control" *[(ngModel)]="formLastname" placeholder="Mustermann">
+  </div>
+</form>
+<button class="btn btn-primary" (click)="createCustomer(
+)">
+Create Customer
+</button>
+<ul>
+  <li *ngFor="let customer of customers">
+    {{ customer.firstname }}, {{ customer.lastname }}, {{ customer.id }}
+  </li>
+
+</ul>
+
