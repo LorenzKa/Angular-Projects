@@ -1,9 +1,9 @@
-import { HttpClient } from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-interface ICustomer {
-  id: number;
-  firstname: string;
-  lastname: string;
+interface IContact {
+  firstName: string;
+  lastName: string;
+  email: string;
 }
 
 @Component({
@@ -13,20 +13,28 @@ interface ICustomer {
 })
 export class AppComponent {
   title = 'My Angular Demo';
-  formCustomerId : string = ''
-  formFirstname : string = ''
-  formLastname : string = ''
-  customers: ICustomer[] = [];
-  customerId: number = 1
+  contacts: IContact[] = [];
+  customerId: number = 1;
+  inputName = ""
+  formFirstName = ""
+  formLastName = ""
+  formEmail = ""
+  deleteId = 0
   constructor(private http: HttpClient) {}
-  getAllCustomers():void {
-    this.http.get<ICustomer[]>('http://localhost:8000/api/customers').subscribe(result => this.customers = result)
+  getAllContacts(): void {
+    this.http
+      .get<IContact[]>('http://localhost:5000/contacts')
+      .subscribe((result) => (this.contacts = result));
   }
-  getCustomer():void{
-    this.http.get<ICustomer>('http://localhost:8000/api/customers/'+this.customerId).subscribe(result => this.customers.push(result))
+  getContactsWithName() : void {
+    this.http
+    .get<IContact[]>('http://localhost:5000/contacts/findByName?name='+this.inputName)
+    .subscribe((result) => (this.contacts = result))
   }
-  //TODO: Not Finished
-  createCustomer():void{
-    this.http.post('http://localhost:8000/api/customers', this.formFirstname)
+  deleteContact() : void{
+    this.http.delete<IContact[]>('http://localhost:5000/contacts/'+this.deleteId)
+    .subscribe((result) => (this.contacts = result))
+    this.getAllContacts()
   }
+  
 }
