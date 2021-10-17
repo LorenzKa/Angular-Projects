@@ -1,0 +1,84 @@
+<nav class="navbar navbar-expand-lg navbar-bright bg-success">
+  <div class="container-fluid">
+    <a class="navbar-brand" style="color: black">Music Playlist Editor</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <span class="navbar-text">Playlists</span>
+      <select
+        id="selectPlaylist"
+        class="form-select selects"
+        aria-label="Default select example"
+        [(ngModel)]="selectedPlaylist"
+        (ngModelChange)="getTracksForPlaylist()"
+      >
+        <option *ngFor="let playlist of playlists" [value]="playlist.id">
+          {{ playlist.name }}
+        </option>
+      </select>
+      <span class="navbar-text" 
+        >Number of Tracks: {{ totalTracks }}</span
+      >
+      <span class="navbar-text" 
+        >Total Playtime: {{ totallength }}ms</span
+      >
+      <button [disabled]=!enableNavEnablerButton (click)="showTrackAddBarFunc()" style="margin-left: 20px" class="btn btn-warning">
+        Add new Track
+      </button>
+    </div>
+  </div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-bright bg-warning" [style.display]="showTrackAddBar ? '' : 'none'">
+    <span style="margin-left: 10px;" class="navbar-text" >Genre: </span>
+    <select style="margin: 10px;"
+    id="selectPlaylist"
+        class="form-select selects"
+        aria-label="Default select example"
+        [(ngModel)]="genreSelected"
+        (ngModelChange)="addTrackGenre()"
+      >
+        <option *ngFor="let genre of genres" [value]="genre.id">
+          {{ genre.name }}
+        </option>
+      </select>
+    <span class="navbar-text" >Track: </span>
+    <select
+    id="selectPlaylist"
+    [disabled]=!genreSelected
+        class="form-select selects"
+        aria-label="Default select example"
+        [(ngModel)]="trackSelected"
+        (ngModelChange)="addTrack()"
+      >
+        <option *ngFor="let track of tracks" [value]="track.id">
+          {{ track.name }}
+        </option>
+      </select>
+      <button (click)="addTrackToPlaylist()" [disabled]=!enableAddButton class="btn btn-success">
+        Add Track
+      </button>
+</nav>
+<table class="table table-striped table-inverse table-responsive">
+  <thead class="thead-inverse">
+    <tr>
+      <th>Track #</th>
+      <th>Name</th>
+      <th>Album</th>
+      <th>Genre</th>
+      <th>Length</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let track of tableTracks">
+      <td scope="row">{{ track.id }}</td>
+      <td>{{ track.name }}</td>
+      <td>{{ track.album }}</td>
+      <td>{{ track.genre }}</td>
+      <td>{{ convertMs(track.length) }}</td>
+      <td>
+        <button (click)="deleteTrack(track.id)" class="btn btn-danger">
+          Delete
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
