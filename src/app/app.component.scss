@@ -1,0 +1,30 @@
+
+.card{
+    min-width: 24.4%;
+    float: left;
+    margin: 0.3%;
+    background-color: var(--primary-light);
+}
+.cardTitleBox{
+    min-height: 100px;
+    text-align: center;
+    vertical-align: middle;
+    line-height: normal;
+}
+.cardButtonArea{
+    text-align: center;
+}
+.cardButton{
+    width: 40%;
+}
+body {
+    background-color: var(--primary-background);
+  }
+#cardsDiv{
+      text-align: center;
+      vertical-align: middle;
+      margin-top: 1%;
+}
+#toolbar{
+    text-align: center;
+}
