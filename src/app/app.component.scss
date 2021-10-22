@@ -1,9 +1,9 @@
 
 .card{
-    min-width: 24.4%;
-    float: left;
+    width: 24.4%;
     margin: 0.3%;
     background-color: white;
+  display: inline-block;
 }
 .cardTitleBox{
     min-height: 100px;
@@ -21,8 +21,10 @@ body {
     background-color: green;
   }
 #cardsDiv{
-      text-align: center;
-      vertical-align: middle;
+    display: flex;
+    flex-wrap: wrap; /* Optional. only if you want the items to wrap */
+    justify-content: center; /* For horizontal alignment */
+    align-items: center; /* For vertical alignment */
       margin-top: 1%;
       
 }
@@ -30,5 +32,11 @@ body {
     text-align: center;
 }
 #btnNextRound{
-    width: 99.4%;
+    width: 48.8%;
+}
+#divNextRound{
+    display: flex;
+    flex-wrap: wrap; /* Optional. only if you want the items to wrap */
+    justify-content: center; /* For horizontal alignment */
+    align-items: center; /* For vertical alignment */
 }

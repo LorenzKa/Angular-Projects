@@ -74,7 +74,7 @@ export class AppComponent {
     }
   }
   canContinue(): boolean{
-    if(this.matchList.matches.filter(x => x.winner == null).length == 0 && this.matchList != undefined){
+    if(this.matchList.matches.filter(x => x.winner == null).length == 0 && this.matchList != undefined && this.matchList.matches.length >1){
       return true;
     }
     else{
