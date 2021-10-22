@@ -1,6 +1,6 @@
-
 <mat-toolbar id="toolbar" color="secondary">
   Tournament Planner
+  <button (click)="startTournament()" mat-raised-button [color]="hasMatches()">Start new Tournament</button>
 </mat-toolbar>
 <div id="cardsDiv">
 <mat-card
@@ -9,18 +9,24 @@
   class="card"
 >
   <mat-card-title class="cardTitleBox"
-    >{{ match.player1.name }} <br />
-    VS
+    >{{ match.player1.name }}
+    <svg *ngIf="match.player1.gender == 'Male'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M15.05 8.537L18.585 5H14V3h8v8h-2V6.414l-3.537 3.537a7.5 7.5 0 1 1-1.414-1.414zM10.5 20a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11z"/></svg>
+    <svg *ngIf="match.player1.gender == 'Female'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 15.934A7.501 7.501 0 0 1 12 1a7.5 7.5 0 0 1 1 14.934V18h5v2h-5v4h-2v-4H6v-2h5v-2.066zM12 14a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11z"/></svg>
+     <br />
+    vs
     <br />
     {{ match.player2.name }}
+    <svg *ngIf="match.player2.gender == 'Male'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M15.05 8.537L18.585 5H14V3h8v8h-2V6.414l-3.537 3.537a7.5 7.5 0 1 1-1.414-1.414zM10.5 20a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11z"/></svg>
+    <svg *ngIf="match.player2.gender == 'Female'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 15.934A7.501 7.501 0 0 1 12 1a7.5 7.5 0 0 1 1 14.934V18h5v2h-5v4h-2v-4H6v-2h5v-2.066zM12 14a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11z"/></svg>
   </mat-card-title>
   <mat-card-content> </mat-card-content>
   <mat-divider inset></mat-divider>
   <mat-card-actions class="cardButtonArea">
-    <button class="cardButton" mat-raised-button color="primary">{{ match.player1.name }}</button>
-    <button class="cardButton" mat-raised-button color="accent">
-      {{ match.player2.name }}
-    </button>
+    <button (click)="setWinner(match.player1.id, match.id)" class="cardButton" mat-raised-button [color]="isWinner(1, match.id)">{{ match.player1.name }}</button>
+    <button (click)="setWinner(match.player2.id, match.id)" class="cardButton" mat-raised-button [color]="isWinner(2, match.id)">{{ match.player2.name }}</button>
   </mat-card-actions>
 </mat-card>
+<div id="divNextRound">
+<button [hidden]="!canContinue()" (click)="nextRound()" mat-raised-button id="btnNextRound" [disabled]="!canContinue()" color="primary">Start next Round</button>
+</div>
 </div>
