@@ -51,8 +51,10 @@ export class AppComponent {
     })
   }
   startTournament(){
-    this.http.delete(this.baseurl+"Match").subscribe(result => console.log(result))
-    this.http.get<IMatchList>(this.baseurl+"Match/GenerateRound").subscribe(x => this.matchList = x)
+    this.http.delete(this.baseurl+"Match").subscribe(result => {
+      this.http.get<IMatchList>(this.baseurl+"Match/GenerateRound").subscribe(x => this.matchList = x)
+    })
+    
   }
   nextRound(){
     this.http.get<IMatchList>(this.baseurl+"Match/GenerateRound").subscribe(x => this.matchList = x)
