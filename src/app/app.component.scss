@@ -1,42 +1,50 @@
-
-.card{
-    width: 24.4%;
-    margin: 0.3%;
-    background-color: white;
+.card {
+  width: 24.4%;
+  margin: 0.3%;
+  background-color: white;
   display: inline-block;
 }
-.cardTitleBox{
-    min-height: 100px;
-    text-align: center;
-    vertical-align: middle;
-    line-height: normal;
+.cardTitleBox {
+  min-height: 100px;
+  text-align: center;
+  vertical-align: middle;
+  line-height: normal;
 }
-.cardButtonArea{
-    text-align: center;
+.cardButtonArea {
+  text-align: center;
 }
-.cardButton{
-    width: 40%;
+.cardButton {
+  width: 40%;
 }
 body {
-    background-color: green;
-  }
-#cardsDiv{
-    display: flex;
-    flex-wrap: wrap; /* Optional. only if you want the items to wrap */
-    justify-content: center; /* For horizontal alignment */
-    align-items: center; /* For vertical alignment */
-      margin-top: 1%;
-      
+  background-color: green;
 }
-#toolbar{
-    text-align: center;
+#tournamentWinnerDiv {
+  background-color: gold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  border-radius: 15px;
+  width: 90%;
+  margin-left: 5%;
 }
-#btnNextRound{
-    width: 48.8%;
+#cardsDiv {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1%;
 }
-#divNextRound{
-    display: flex;
-    flex-wrap: wrap; /* Optional. only if you want the items to wrap */
-    justify-content: center; /* For horizontal alignment */
-    align-items: center; /* For vertical alignment */
+#toolbar {
+  text-align: center;
+}
+#btnNextRound {
+  width: 48.8%;
+}
+#divNextRound {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
 }
