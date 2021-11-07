@@ -31,3 +31,6 @@
 <div id="divNextRound">
 <button [hidden]="!canContinue()" (click)="nextRound()" mat-raised-button id="btnNextRound" [disabled]="!canContinue()" color="primary">Start next Round</button>
 </div>
+<div *ngIf="tournamentHasWinner()" id="tournamentWinnerDiv">
+{{matchList.matches[0].winner}}
+</div>

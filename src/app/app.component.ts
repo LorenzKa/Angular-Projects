@@ -83,4 +83,20 @@ export class AppComponent {
       return false;
     }
   }
+  tournamentHasWinner(): boolean{
+    if(this.matchList.matches.length == 1 && this.matchList.matches[0].winner != null){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+  getTournamentWinner() : IPLayer{
+    if(this.matchList.matches[0].winner == 1){
+      return this.matchList.matches[0].player1;
+    }
+    else{
+      return this.matchList.matches[0].player2;
+    }
+  }
 }
