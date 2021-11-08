@@ -1,0 +1,19 @@
+<app-navbar [classes]="classes" (classSelected)="classSelected($event)"></app-navbar>
+<app-log></app-log>
+
+<table class="table table-striped table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>m/w</th>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Reg</th>
+      <th>Klasse</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let student of students">
+      <app-student-row [student]="student"></app-student-row>
+      <span>Test</span>
+    </tr>
+  </tbody>

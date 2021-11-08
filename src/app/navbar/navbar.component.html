@@ -1,0 +1,5 @@
+<mat-toolbar>
+    <mat-button-toggle-group>
+    <mat-button-toggle (click)="onClassSelected(item.id)" *ngFor="let item of classes" mat-raised-button color="primary">{{item.name}}</mat-button-toggle>
+</mat-button-toggle-group>
+</mat-toolbar>
