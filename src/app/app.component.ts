@@ -12,10 +12,13 @@ interface IStudent {
   email: string,
   country: string,
   age: number,
-  registered: number,
-  clazzId: number
+  registered: boolean,
+  clazzId: number,
+  availableClazzes: IClass[]
 }
-
+interface IChangeClass{
+  classId: number, studentId: number
+}
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -33,10 +36,16 @@ export class AppComponent {
     console.log(this.classes)
     });
   }
+  changeStudent(receivedData: IStudent){
+    this.http.put<IStudent>('http://localhost:5000/Student/SetStudent', receivedData).subscribe(data => {
+    })
+  }
   classSelected(classId: number) {
     this.selectedClass = classId;
     this.http.get<IStudent[]>('http://localhost:5000/Class/' + classId).subscribe(data => {
+      console.log(data)
       this.students = data;
+      
     })
   }
 }

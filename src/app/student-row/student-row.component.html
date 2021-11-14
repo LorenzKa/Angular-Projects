@@ -1,5 +1,28 @@
-<div class="row">
-    <svg *ngIf="student.gender == 'Male'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M15.05 8.537L18.585 5H14V3h8v8h-2V6.414l-3.537 3.537a7.5 7.5 0 1 1-1.414-1.414zM10.5 20a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11z"/></svg>
-    <svg *ngIf="student.gender == 'Female'" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M11 15.934A7.501 7.501 0 0 1 12 1a7.5 7.5 0 0 1 1 14.934V18h5v2h-5v4h-2v-4H6v-2h5v-2.066zM12 14a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11z"/></svg>
-    <span>Test</span>
-</div>
+<td *ngIf="student.gender == 'M'" class="gender" [style.background-image]="'url(../assets/men.svg)'">
+</td>
+<td *ngIf="student.gender == 'F'" class="gender" [style.background-image]="'url(../assets/female.svg)'">
+</td>
+<td>
+  <span>{{ student.name }}</span>
+</td>
+<td>
+  <span>{{ getAgeString(student.age.toString()) }}</span>
+</td>
+<td (click)="changeRegistered()" *ngIf="student.registered" class="gender" [style.background-image]="'url(../assets/check.svg)'">
+</td>
+<td (click)="changeRegistered()" *ngIf="!student.registered" class="gender" [style.background-image]="'url(../assets/cross.svg)'">
+</td>
+<td>
+  <mat-form-field appearance="outline">
+    <input type="number" matInput [(ngModel)]="student.age" (change)="changeAge()" />
+  </mat-form-field>
+</td>
+<td>
+  <button
+    mat-raised-button
+    *ngFor="let classList of student.availableClazzes"
+    (click)="onClassSelected(classList.id)"
+  >
+    {{ classList.name }}
+  </button>
+</td>

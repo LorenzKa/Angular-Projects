@@ -8,12 +8,11 @@
       <th>Name</th>
       <th>Age</th>
       <th>Reg</th>
+      <th></th>
       <th>Klasse</th>
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let student of students">
-      <app-student-row [student]="student"></app-student-row>
-      <span>Test</span>
+    <tr *ngFor="let student of students" app-student-row [student]="student" (changeStudentClass)="changeStudent($event)">
     </tr>
   </tbody>

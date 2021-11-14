@@ -39,6 +39,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { StudentRowComponent } from './student-row/student-row.component';
 import { LogComponent } from './log/log.component';
+import { NotifierService } from './notifier.service';
 
 @NgModule({
   declarations: [
@@ -85,7 +86,7 @@ import { LogComponent } from './log/log.component';
     MatToolbarModule,
     MatTooltipModule,
   ],
-  providers: [],
+  providers: [NotifierService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
