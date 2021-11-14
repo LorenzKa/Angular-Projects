@@ -38,6 +38,10 @@ export class AppComponent {
   }
   changeStudent(receivedData: IStudent){
     this.http.put<IStudent>('http://localhost:5000/Student/SetStudent', receivedData).subscribe(data => {
+      console.log(data)
+      this.students = this.students.filter(x => x.id != receivedData.id)
+      this.students.push(receivedData)
+
     })
   }
   classSelected(classId: number) {
