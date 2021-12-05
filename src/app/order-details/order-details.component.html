@@ -1,1 +1,16 @@
-<p>order-details works!</p>
+<table mat-table #table [dataSource]="orderDetails">
+    <ng-container matColumnDef="quantity">
+        <th mat-header-cell *matHeaderCellDef> Quantity </th>
+        <td mat-cell *matCellDef="let row"> {{row.quantity}} </td>
+    </ng-container>
+    <ng-container matColumnDef="unitPrice">
+        <th mat-header-cell *matHeaderCellDef> UnitPrice </th>
+        <td mat-cell *matCellDef="let row"> {{row.unitPrice}} </td>
+    </ng-container>
+    <ng-container matColumnDef="product">
+        <th mat-header-cell *matHeaderCellDef> Product </th>
+        <td mat-cell *matCellDef="let row"> {{row.productName}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="['quantity', 'unitPrice', 'product']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['quantity', 'unitPrice', 'product'];"></tr>
+</table>

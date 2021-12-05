@@ -42,6 +42,7 @@ import { OrdersComponent } from './orders/orders.component';
 import { AppRoutingModule } from './app-routing.module';
 import { OrderDetailsComponent } from './order-details/order-details.component';
 import { EllipsisNotationPipe } from './shared/ellipsis-notation.pipe';
+import { PageUnknownComponentComponent } from './page-unknown-component/page-unknown-component.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { EllipsisNotationPipe } from './shared/ellipsis-notation.pipe';
     EmployeesComponent,
     OrdersComponent,
     OrderDetailsComponent,
-    EllipsisNotationPipe
+    EllipsisNotationPipe,
+    PageUnknownComponentComponent
   ],
   imports: [
     HttpClientModule,
