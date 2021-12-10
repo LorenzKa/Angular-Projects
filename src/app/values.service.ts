@@ -1,17 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-interface DummyDataDto{
-  intVal: number,
-  stringVal : string
-}
+import { DummyDataDto } from './DummyDataDto';
 @Injectable({
   providedIn: 'root'
 })
 export class ValuesService {
-  private urlBase = 'http://localhost:5000/values'
+  private urlBase = 'http://localhost:5075/values'
   constructor(private httpClient: HttpClient) { }
   getDummyData(): Observable<DummyDataDto>{
+    console.log("getDummyData");
     return this.httpClient.get<DummyDataDto>(this.urlBase+"/dummy");
   }
 }

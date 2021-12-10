@@ -36,16 +36,17 @@ import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatStepperModule } from "@angular/material/stepper";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HomeComponentComponent } from './home-component/home-component.component';
 import { HomeComponent } from './home/home.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponentComponent,
     HomeComponent
   ],
   imports: [
+    HttpClient,
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
@@ -81,6 +82,7 @@ import { HomeComponent } from './home/home.component';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
