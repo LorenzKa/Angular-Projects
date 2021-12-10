@@ -37,12 +37,13 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { MatStepperModule } from "@angular/material/stepper";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     FormsModule,
     BrowserAnimationsModule,
