@@ -1,7 +1,8 @@
 <mat-toolbar>
     <h1>COVID19-Dashboard</h1>
-    <button mat-raised-button>Dashboard</button>
-    <button mat-raised-button>Secret</button>
+    <button mat-raised-button routerLink="" color="warn">Dashboard</button>
+    <button mat-raised-button routerLink="secret" color="accent">Secret</button>
+    <button *ngIf="!isLoggedIn()" mat-raised-button routerLink="login" color="primary"> Login </button>
+    <button *ngIf="isLoggedIn()" (click)="logout()" mat-raised-button  color="primary"> Logout </button>
 </mat-toolbar>
-
-<app-bar-chart id="chartCases" [data]="barChartData" [labels]="barChartDates"></app-bar-chart>
+<router-outlet></router-outlet>

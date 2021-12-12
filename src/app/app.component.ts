@@ -1,36 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { DeltaData } from 'src/Dto/DeltaData';
-import { BackendServiceService } from './backend-service.service';
-import { ChartDataset } from 'chart.js';
-
+import { AuthenticationService } from './core/services/authentication.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit {
-  title = 'My Angular Demo';
-  barChartDates: string[] = [];
-  barChartData: ChartDataset[] = [];
+export class AppComponent {
   
-  constructor(private backendService: BackendServiceService) {
-    
+  constructor(public authenticationService: AuthenticationService) {}
+  isLoggedIn() : boolean {
+     if( sessionStorage.getItem('currentUser')) return true;
+     return false;
   }
-  ngOnInit(): void {
-    this.createBarChart();
+  logout() : void{
+    this.authenticationService.logout();
   }
-  createBarChart(): void {
-    let backendData: Observable<DeltaData[]>;
-    backendData = this.backendService.getDeltaData();
-    let barChartNumbers: number[] = [];
-    backendData.subscribe(data => {
-      data.forEach(element => {
-        this.barChartDates.push(element.date);
-        barChartNumbers.push(element.deaths);
-      })
-      this.barChartData = [{ data: barChartNumbers, label: 'Deaths' }];
-    })
-  }
-
 }

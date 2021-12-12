@@ -1,7 +1,10 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { AppComponent } from './app.component';
+import { CommonModule } from '@angular/common';
+import { LineChartComponent } from './line-chart/line-chart.component';
+import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { NgChartsModule } from 'ng2-charts';
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatButtonModule } from "@angular/material/button";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
@@ -34,25 +37,25 @@ import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatStepperModule } from "@angular/material/stepper";
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
-import { FeatureModule } from './feature/feature.module';
-import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import { SecretComponent } from './secret/secret.component';
+import { PieChartComponent } from './pie-chart/pie-chart.component';
 
 @NgModule({
   declarations: [
-    AppComponent
-    ],
+    BarChartComponent,
+    LineChartComponent,
+    LoginComponent,
+    HomeComponent,
+    SecretComponent,
+    PieChartComponent
+  ],
   imports: [
-    FeatureModule,
-    CoreModule,
-    SharedModule,
-    HttpClientModule,
-    BrowserModule,
     FormsModule,
-    BrowserAnimationsModule,
+    BrowserModule,
+    CommonModule,
+    NgChartsModule,
     MatAutocompleteModule,
     MatButtonModule,
     MatButtonToggleModule,
@@ -85,9 +88,6 @@ import { SharedModule } from './shared/shared.module';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    AppRoutingModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
+  ]
 })
-export class AppModule { }
+export class SharedModule { }
