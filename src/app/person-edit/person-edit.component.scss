@@ -1,0 +1,14 @@
+#editContainer{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    height: 50%;
+    float: left;
+}
+#editContainer > *{
+    width: 50%
+}
+#response{
+    font-size: 1rem;
+    font-weight: bold;
+}

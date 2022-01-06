@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -20,7 +20,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { MatListModule } from "@angular/material/list";
 import { MatMenuModule } from "@angular/material/menu";
-// import {  MatNativeDateModule} from "@angular/material";
+import { MatNativeDateModule } from '@angular/material/core';
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
@@ -38,11 +38,16 @@ import { MatStepperModule } from "@angular/material/stepper";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { PersonEditComponent } from './person-edit/person-edit.component';
+import { PersonListComponent } from './person-list/person-list.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PersonEditComponent,
+    PersonListComponent
   ],
   imports: [
+    ReactiveFormsModule,
     HttpClientModule,
     BrowserModule,
     FormsModule,
@@ -62,7 +67,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatListModule,
     MatMenuModule,
-    // MatNativeDateModule,
+    MatNativeDateModule,
     MatPaginatorModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
