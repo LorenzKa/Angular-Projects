@@ -38,11 +38,17 @@ import { MatStepperModule } from "@angular/material/stepper";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from './shared/shared.module';
+import { FeatureModule } from './feature/feature.module';
+import { CoreModule } from './core/core.module';
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
+    SharedModule,
+    FeatureModule,
+    CoreModule,
     HttpClientModule,
     BrowserModule,
     FormsModule,
