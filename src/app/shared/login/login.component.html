@@ -1,2 +1,5 @@
-<input [(ngModel)]="name" placeholder="Username">
+<mat-form-field appearance="fill">
+    <mat-label>Unter Username</mat-label>
+    <input [(ngModel)]="name" matInput placeholder="Username">
+</mat-form-field>
 <button mat-raised-button color="warn" (click)="login()">Login</button>

@@ -1,4 +1,4 @@
-export interface transactionDto{
+export interface TransactionDto{
     username: string,
     shareName: string,
     amount: number,
