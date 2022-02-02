@@ -2,12 +2,48 @@
 <button mat-raised-button color="warn" (click)="logout()">Disconnect</button>
 Connected Clients: {{usercounter}}
 <hr>
-Cash: {{user.cash}}
+Cash: {{user.cash|currency:'EUR':'symbol':'1.2-2'}}
 <hr>
 <mat-form-field appereance="fill">
-<mat-select [(ngModel)]="selectedShare" name="share">
-    <mat-option *ngFor="let share of shares" [value]="share">
-        {{share.name}}
-    </mat-option>
-</mat-select>
+    <mat-select [(ngModel)]="selectedShare" name="share">
+        <mat-option *ngFor="let share of shares" [value]="share">
+            {{share.name}}
+        </mat-option>
+    </mat-select>
 </mat-form-field>
+<mat-form-field appereance="fill">
+    <input matInput type="number" [(ngModel)]="amount" name="amount">
+</mat-form-field>
+<button (click)="buy()" mat-stroked-button color="primary">Buy</button>
+<button (click)="sell()" mat-stroked-button color="warn">Sell</button>
+<hr>
+<div id="chartsAndTable">
+<table mat-table #table [dataSource]="user.depots">
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let depot"> {{depot.shareName}} </td>
+    </ng-container>
+    <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef> Amount </th>
+        <td mat-cell *matCellDef="let depot"> {{depot.amount}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="['name','amount']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['name','amount'];"></tr>
+</table>
+
+<table mat-table #table [dataSource]="sharePrices">
+    <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let share"> {{share.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="price">
+        <th mat-header-cell *matHeaderCellDef> Price </th>
+        <td mat-cell *matCellDef="let share"> {{share.val|currency:'EUR':'symbol':'1.2-2'}} </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="['name','price']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['name','price'];"></tr>
+</table>
+<app-line-chart [lineChartData]="lineChartData"></app-line-chart>
+</div>
+<hr>
+<span *ngFor="let message of messages">{{message}}<br></span>

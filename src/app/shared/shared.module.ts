@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { StonksComponent } from './stonks/stonks.component';
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
@@ -33,14 +33,18 @@ import { MatTableModule } from "@angular/material/table";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatStepperModule } from "@angular/material/stepper";
 import { FormsModule } from '@angular/forms';
+import { LineChartComponent } from './line-chart/line-chart.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    StonksComponent
+    StonksComponent,
+    LineChartComponent
   ],
   imports: [
+    NgChartsModule,
     FormsModule,
     CommonModule,
     MatAutocompleteModule,
@@ -74,6 +78,7 @@ import { FormsModule } from '@angular/forms';
     MatToolbarModule,
     MatTooltipModule,
   ],
-  exports: []
+  exports: [],
+  providers: [CurrencyPipe],
 })
 export class SharedModule { }
