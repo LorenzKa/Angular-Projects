@@ -54,10 +54,7 @@ export class StockHubService {
   sendLogout(name: string): void {
     this.hubConnection.invoke('loggedOut', { name }).catch(err => this.hubConnection.stop()).then(x => this.hubConnection.stop());
   }
-  sendBuy(transaction: TransactionDto): void {
-    this.hubConnection.invoke('transaction', transaction).catch(err => console.error(err));
-  }
-  sendSell(transaction: TransactionDto): void {
-    this.hubConnection.invoke('transaction', transaction).catch(err => console.error(err));
+  sendTransaction(transaction: TransactionDto): Promise<any> {
+    return this.hubConnection.invoke('transaction', transaction);
   }
 }

@@ -8,7 +8,7 @@ import { ShareTickDto } from 'src/app/model/shareTickDto';
 import { TransactionDto } from 'src/app/model/transactionDto';
 import { UserDto } from 'src/app/model/userDto';
 import { CurrencyPipe } from '@angular/common';
-
+import {FormControl, Validators} from '@angular/forms';
 @Component({
   selector: 'app-stonks',
   templateUrl: './stonks.component.html',
@@ -24,35 +24,39 @@ export class StonksComponent implements OnInit {
   selectedShare: ShareDto = {} as ShareDto;
   amount: number = 1;
   sharePrices: ShareTickDto[] = [];
-  lineChartData: ChartConfiguration['data'] = {
-    datasets: [],
-    labels: []
-  };
-  
+  errorLabel: string = "";
+  lineChartData: ChartConfiguration['data'] = {datasets: [], labels: []};
   ngOnInit(): void {
     this.route.params.subscribe(params => { this.name = params.name });
-    this.hubService.connect().subscribe(x => {
-      this.hubService.sendLogin(this.name)
-    });
+    this.hubService.connect().subscribe(x => this.hubService.sendLogin(this.name));
     this.subscribeToHub();
-    this.controllerService.getShares().subscribe(x => {
-      this.shares = x
-      x.forEach(share => {
-        this.lineChartData.datasets.push({
-          label: share.name,
-          data: [],
-          fill: 'origin'
-        })
-      })
-    });
+    this.initializeChart();
     this.getUser()
-    this.hubService.onStockUpdate().subscribe(x => {
-      this.sharePrices = x;
-    });
+    this.hubService.onStockUpdate().subscribe(x => this.sharePrices = x);
   }
+  
   logout(): void {
     this.hubService.sendLogout(this.name);
     this.router.navigateByUrl("");
+  }
+  buy(): void {
+    this.sendTransaction(true)
+  }
+  sell(): void {
+    this.sendTransaction(false)
+  }
+  sendTransaction(buy: boolean): void{
+    var transaction : TransactionDto = {
+      username: this.name,
+      shareName: this.selectedShare.name,
+      amount: this.amount,
+      isUserBuy: buy,
+      price: this.sharePrices.find(x => x.name == this.selectedShare.name)!.val
+    }
+    this.hubService.sendTransaction(transaction).then(x => this.errorLabel="").catch(x => {console.log(x); this.errorLabel= "Transaction error. Check your inputs."})
+  }
+  getUser(): void {
+    this.controllerService.getUser(this.name).subscribe(x => this.user = x);
   }
   private subscribeToHub(): void {
     this.hubService.onLogin().subscribe(x => {
@@ -76,29 +80,17 @@ export class StonksComponent implements OnInit {
       }
     });
   }
-  buy(): void {
-    var transaction : TransactionDto = {
-      username: this.name,
-      shareName: this.selectedShare.name,
-      amount: this.amount,
-      isUserBuy: true,
-      price: this.sharePrices.find(x => x.name == this.selectedShare.name)!.val
-    }
-    this.hubService.sendBuy(transaction)
+  private initializeChart(): void {
+    this.controllerService.getShares().subscribe(x => {
+      this.shares = x
+      x.forEach(share => {
+        this.lineChartData.datasets.push({
+          label: share.name,
+          data: [],
+          fill: 'origin'
+        })
+      })
+    });
   }
-  sell(): void {
-    var transaction : TransactionDto = {
-      username: this.name,
-      shareName: this.selectedShare.name,
-      amount: this.amount,
-      isUserBuy: false,
-      price: this.sharePrices.find(x => x.name == this.selectedShare.name)!.val
-    }
-    this.hubService.sendSell(transaction)
-  }
-  getUser(): void {
-    this.controllerService.getUser(this.name).subscribe(x => this.user = x);
-  }
-
 
 }
