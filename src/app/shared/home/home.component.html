@@ -1,0 +1,13 @@
+<div id="body">
+    <p>Current Tips: {{currentDraw.nrTips}}</p>
+    <p>Current Round: {{currentDraw.roundId}}</p>
+    <p>Registered Users: {{currentDraw.nrUsers}}</p>
+    <input type="range" min="0" [max]="currentDraw.nrTipsForFullRound" [value]="currentDraw.nrTips" disabled="true">
+    <p>Last Draw: {{currentDraw.startedString}}</p>
+    <p>1: {{lastDraw.z1}}</p>
+    <p>2: {{lastDraw.z2}}</p>
+    <p>3: {{lastDraw.z3}}</p>
+    <p>4: {{lastDraw.z4}}</p>
+    <p>5: {{lastDraw.z5}}</p>
+    <p>6: {{lastDraw.z6}}</p>
+</div>

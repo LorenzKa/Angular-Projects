@@ -34,11 +34,22 @@ import { MatTabsModule } from "@angular/material/tabs";
 import { MatStepperModule } from "@angular/material/stepper";
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { TipComponent } from './tip/tip.component';
+import { RankingComponent } from './ranking/ranking.component';
+import { SettingsComponent } from './settings/settings.component';
+import { WinningsComponent } from './winnings/winnings.component';
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
   declarations: [
     
+  
+    TipComponent,
+            RankingComponent,
+            SettingsComponent,
+            WinningsComponent,
+            HomeComponent
   ],
   imports: [
     CommonModule,

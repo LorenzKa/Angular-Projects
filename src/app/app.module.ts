@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared.module';
 import { FeatureModule } from './feature/feature.module';
 import { CoreModule } from './core/core.module';
+import { MatButtonModule } from '@angular/material/button';
 @NgModule({
   declarations: [
     AppComponent
@@ -21,6 +22,7 @@ import { CoreModule } from './core/core.module';
     FormsModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
